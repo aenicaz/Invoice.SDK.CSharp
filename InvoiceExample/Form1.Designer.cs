@@ -35,7 +35,7 @@
             this.btnCheck = new System.Windows.Forms.Button();
             this.txtLogin = new System.Windows.Forms.TextBox();
             this.txtApiKey = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnAuthorization = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnPay
@@ -50,7 +50,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(174, 35);
+            this.btnCancel.Location = new System.Drawing.Point(183, 35);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 1;
@@ -60,8 +60,7 @@
             // 
             // btnRefund
             // 
-            this.btnRefund.Enabled = false;
-            this.btnRefund.Location = new System.Drawing.Point(255, 35);
+            this.btnRefund.Location = new System.Drawing.Point(268, 35);
             this.btnRefund.Name = "btnRefund";
             this.btnRefund.Size = new System.Drawing.Size(75, 23);
             this.btnRefund.TabIndex = 2;
@@ -82,7 +81,7 @@
             // 
             // btnCheck
             // 
-            this.btnCheck.Location = new System.Drawing.Point(93, 35);
+            this.btnCheck.Location = new System.Drawing.Point(97, 35);
             this.btnCheck.Name = "btnCheck";
             this.btnCheck.Size = new System.Drawing.Size(75, 23);
             this.btnCheck.TabIndex = 4;
@@ -94,34 +93,34 @@
             // 
             this.txtLogin.Location = new System.Drawing.Point(13, 9);
             this.txtLogin.Name = "txtLogin";
-            this.txtLogin.Size = new System.Drawing.Size(100, 20);
+            this.txtLogin.Size = new System.Drawing.Size(37, 20);
             this.txtLogin.TabIndex = 5;
-            this.txtLogin.Text = "test@test";
+            this.txtLogin.Text = "demo";
             // 
             // txtApiKey
             // 
-            this.txtApiKey.Location = new System.Drawing.Point(119, 9);
+            this.txtApiKey.Location = new System.Drawing.Point(56, 9);
             this.txtApiKey.Name = "txtApiKey";
-            this.txtApiKey.Size = new System.Drawing.Size(186, 20);
+            this.txtApiKey.Size = new System.Drawing.Size(193, 20);
             this.txtApiKey.TabIndex = 6;
-            this.txtApiKey.Text = "9dadaad09c12f5e31b6c17626ca9749f";
+            this.txtApiKey.Text = "1526fec01b5d11f4df4f2160627ce351";
             // 
-            // button1
+            // btnAuthorization
             // 
-            this.button1.Location = new System.Drawing.Point(311, 7);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(20, 23);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Вернуть";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            this.btnAuthorization.Location = new System.Drawing.Point(256, 7);
+            this.btnAuthorization.Name = "btnAuthorization";
+            this.btnAuthorization.Size = new System.Drawing.Size(87, 23);
+            this.btnAuthorization.TabIndex = 7;
+            this.btnAuthorization.Text = "Авторизация";
+            this.btnAuthorization.UseVisualStyleBackColor = true;
+            this.btnAuthorization.Click += new System.EventHandler(this.Button1_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(342, 88);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(355, 88);
+            this.Controls.Add(this.btnAuthorization);
             this.Controls.Add(this.txtApiKey);
             this.Controls.Add(this.txtLogin);
             this.Controls.Add(this.btnCheck);
@@ -148,7 +147,7 @@
         private System.Windows.Forms.Button btnCheck;
         private System.Windows.Forms.TextBox txtLogin;
         private System.Windows.Forms.TextBox txtApiKey;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnAuthorization;
     }
 }
 

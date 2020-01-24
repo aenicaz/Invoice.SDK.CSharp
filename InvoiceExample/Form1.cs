@@ -1,13 +1,7 @@
 ﻿using Invoice.SDK.Rest;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace InvoiceExample
@@ -19,13 +13,15 @@ namespace InvoiceExample
             InitializeComponent();
         }
 
-        RestClient Rest = new RestClient("79130699020", "123");
+        RestClient Rest = null;
         TerminalInfo Terminal;
         PaymentInfo Payment;
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Rest = new RestClient(txtLogin.Text, txtApiKey.Text);
             Rest.Print = Console.WriteLine;
+
             //при загрузке плагина необходимо найти терминал или создать новый
             if (Terminal.id == null)
             {
@@ -41,7 +37,7 @@ namespace InvoiceExample
                         alias = "1:1", //уникальный id в пределах вашей учетной записи. Например НомерМагазина:НомерКассы
                         name = "Название магазина",
                         description = "Касса #1",
-                        type = TERMINAL_TYPE.statical,
+                        type = TERMINAL_TYPE.dynamical,
                         defaultPrice = 0,
                     });
                 }
@@ -56,12 +52,11 @@ namespace InvoiceExample
 
         private void BtnPay_Click(object sender, EventArgs e)
         {
-            btnPay.Enabled = false;
             CREATE_PAYMENT request = new CREATE_PAYMENT()
             {
                 order = new ORDER()
                 {
-                    amount = 20m,
+                    amount = 1000m,
                     description = "Заказ #123",
                     id = Guid.NewGuid().ToString()
                 },
@@ -78,10 +73,10 @@ namespace InvoiceExample
                     new ITEM()
                     {
                         name = "Кефир",
-                        price = 10m,
+                        price = 1000m,
                         quantity = 1,
-                        resultPrice = 10m,
-                        discount = "0"
+                        resultPrice = 990m,
+                        discount = "10"
                     }
                 },
                 settings = new SETTINGS()
@@ -99,50 +94,31 @@ namespace InvoiceExample
             Payment = Rest.CreatePayment(request);
 
             if (Payment.error != null || Payment.status == PAYMENT_STATE.error)
-            {
                 MessageBox.Show(Payment.description, "ERROR");
-            }
-            MessageBox.Show("платеж создан");
-            btnCancel.Enabled = true;
-            btnCheck.Enabled = true;
-            btnRefund.Enabled = true;
+            else
+                MessageBox.Show("платеж создан");
         }
 
         private void BtnCheck_Click(object sender, EventArgs e)
         {
-            btnCheck.Enabled = false;
             Payment = Rest.GetPayment(new GET_PAYMENT() { id = Payment.id });
             if (Payment.status == PAYMENT_STATE.error)
-            {
                 MessageBox.Show("error");
-                btnPay.Enabled = true;
-                btnCancel.Enabled = false;
-            }
 
             if (Payment.status == PAYMENT_STATE.successful)
-            {
                 MessageBox.Show("done");
-                btnPay.Enabled = true;
-                btnRefund.Enabled = true;
-                btnCancel.Enabled = false;
-            }
-            btnCheck.Enabled = true;
         }
 
         private void BtnCancel_Click(object sender, EventArgs e)
         {
-            btnCancel.Enabled = false;
             Rest.ClosePayment(new CLOSE_PAYMENT() { id = Payment.id });
             Payment = new PaymentInfo();
+
             MessageBox.Show("платеж отменен");
-            btnPay.Enabled = true;
-            btnRefund.Enabled = false;
-            btnCancel.Enabled = false;
         }
 
         private void BtnRefund_Click(object sender, EventArgs e)
         {
-            btnRefund.Enabled = false;
             RefundInfo refund = Rest.CreateRefund(new CREATE_REFUND()
             {
                 id = Payment.id,
@@ -172,9 +148,6 @@ namespace InvoiceExample
                 }
             });
 
-            btnRefund.Enabled = true;
-            btnPay.Enabled = true;
-
             if (!string.IsNullOrEmpty(refund.error))
             {
                 MessageBox.Show(refund.description, "Ошибка возврата #" + refund.error);
@@ -189,6 +162,7 @@ namespace InvoiceExample
             Rest = new RestClient(txtLogin.Text, txtApiKey.Text);
             Rest.Print = Console.WriteLine;
             Terminal = new TerminalInfo();
+
             if (Terminal.id == null)
             {
                 Terminal = Rest.GetTerminal(new GET_TERMINAL()
@@ -203,7 +177,7 @@ namespace InvoiceExample
                         alias = "1:1", //уникальный id в пределах вашей учетной записи. Например НомерМагазина:НомерКассы
                         name = "Название магазина",
                         description = "Касса #1",
-                        type = TERMINAL_TYPE.statical,
+                        type = TERMINAL_TYPE.dynamical,
                         defaultPrice = 0,
                     });
                 }

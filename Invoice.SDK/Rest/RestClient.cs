@@ -3,6 +3,7 @@ using Newtonsoft.Json.Converters;
 using System;
 using System.IO;
 using System.Net;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -14,7 +15,6 @@ namespace Invoice.SDK.Rest
     public class RestClient
     {
         public Uri Url { get; set; } = new Uri("https://api.invoice.su/api/v2/");
-        //public Uri Url { get; set; } = new Uri("https://proto.invoice.su/invoice_server/api/v2/");
 
         public string Email { get; } 
 
@@ -59,7 +59,7 @@ namespace Invoice.SDK.Rest
 
                 using (var streamReader = new StreamReader(httpWebRequest.GetResponse().GetResponseStream()))
                 {
-                    var result = streamReader.ReadToEnd();
+                    var result = streamReader.ReadToEnd().Replace("\\\\", "\\");
                     Print(result);
                     return result;
                 }
@@ -118,12 +118,7 @@ namespace Invoice.SDK.Rest
             return JsonConvert.DeserializeObject<TerminalInfo>(response);
         }
 
-        private void print(params object[] objs)
-        {
-            string message = "";
-            foreach(object obj in objs)
-                message += obj.ToString();
-            Print(message);
-        }
+        private void print(params object[] objs) =>
+            Print(string.Join(", ", objs));
     }
 }
