@@ -16,16 +16,16 @@ namespace Invoice.SDK.Rest
     {
         public Uri Url { get; set; } = new Uri("https://api.invoice.su/api/v2/");
 
-        public string Email { get; } 
+        public string Merchant { get; } 
 
         public string Key { get; }
 
         public delegate void PrintDelegate(string message);
         public PrintDelegate Print;
 
-        public RestClient(string mail, string apikey) 
+        public RestClient(string merchantid, string apikey) 
         {
-            Email = mail;
+            Merchant = merchantid;
             Key = apikey;
             JsonConvert.DefaultSettings = (() =>
             {
@@ -48,7 +48,7 @@ namespace Invoice.SDK.Rest
                 httpWebRequest.KeepAlive = false;
                 httpWebRequest.ServicePoint.Expect100Continue = false;
 
-                var base64authorization = Convert.ToBase64String(Encoding.Default.GetBytes($"{Email}:{Key}"));
+                var base64authorization = Convert.ToBase64String(Encoding.Default.GetBytes($"{Merchant}:{Key}"));
                 httpWebRequest.Headers.Add(HttpRequestHeader.Authorization, string.Format("Basic {0}", base64authorization));
 
                 print(requestType);

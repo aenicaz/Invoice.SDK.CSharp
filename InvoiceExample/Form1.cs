@@ -19,7 +19,7 @@ namespace InvoiceExample
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Rest = new RestClient(txtLogin.Text, txtApiKey.Text);
+            Rest = new RestClient(txtMerchantId.Text, txtApiKey.Text);
             Rest.Print = Console.WriteLine;
 
             //при загрузке плагина необходимо найти терминал или создать новый
@@ -159,7 +159,7 @@ namespace InvoiceExample
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            Rest = new RestClient(txtLogin.Text, txtApiKey.Text);
+            Rest = new RestClient(txtMerchantId.Text, txtApiKey.Text);
             Rest.Print = Console.WriteLine;
             Terminal = new TerminalInfo();
 
