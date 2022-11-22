@@ -33,7 +33,7 @@
             this.btnRefund = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.btnCheck = new System.Windows.Forms.Button();
-            this.txtLogin = new System.Windows.Forms.TextBox();
+            this.txtMerchantId = new System.Windows.Forms.TextBox();
             this.txtApiKey = new System.Windows.Forms.TextBox();
             this.btnAuthorization = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -89,13 +89,13 @@
             this.btnCheck.UseVisualStyleBackColor = true;
             this.btnCheck.Click += new System.EventHandler(this.BtnCheck_Click);
             // 
-            // txtLogin
+            // txtMerchantId
             // 
-            this.txtLogin.Location = new System.Drawing.Point(13, 9);
-            this.txtLogin.Name = "txtLogin";
-            this.txtLogin.Size = new System.Drawing.Size(37, 20);
-            this.txtLogin.TabIndex = 5;
-            this.txtLogin.Text = "demo";
+            this.txtMerchantId.Location = new System.Drawing.Point(13, 9);
+            this.txtMerchantId.Name = "txtMerchantId";
+            this.txtMerchantId.Size = new System.Drawing.Size(37, 20);
+            this.txtMerchantId.TabIndex = 5;
+            this.txtMerchantId.Text = "c24360cfac0a0c40c518405f6bc68cb0";
             // 
             // txtApiKey
             // 
@@ -122,7 +122,7 @@
             this.ClientSize = new System.Drawing.Size(355, 88);
             this.Controls.Add(this.btnAuthorization);
             this.Controls.Add(this.txtApiKey);
-            this.Controls.Add(this.txtLogin);
+            this.Controls.Add(this.txtMerchantId);
             this.Controls.Add(this.btnCheck);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.btnRefund);
@@ -145,7 +145,7 @@
         private System.Windows.Forms.Button btnRefund;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Button btnCheck;
-        private System.Windows.Forms.TextBox txtLogin;
+        private System.Windows.Forms.TextBox txtMerchantId;
         private System.Windows.Forms.TextBox txtApiKey;
         private System.Windows.Forms.Button btnAuthorization;
     }
