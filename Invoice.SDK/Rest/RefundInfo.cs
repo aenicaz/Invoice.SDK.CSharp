@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
+﻿using System;
 
 namespace Invoice.SDK.Rest
 {
@@ -8,15 +6,11 @@ namespace Invoice.SDK.Rest
     {
         public string id { get; set; }
         public ORDER order { get; set; }
-        public REFUND_INFO refund { get; set; }
-        public PAYMENT_STATE status { get; set; }
-        public string status_description { get; set; }
+        public REFUND refund { get; set; }
         public string payment_id { get; set; }
         public PAYMENT_METHOD payment_method { get; set; }
-        public DateTime create_date { get; set; }
-        public DateTime update_date { get; set; }
-        public Dictionary<string, JToken> custom_parameters { get; set; }
-        public string error { get; set; }
-        public string description { get; set; }
+        public DateTime date_insert { get; set; }
+        public DateTime date_update { get; set; }
+        public STATUS status { get; set; }
     }
 }

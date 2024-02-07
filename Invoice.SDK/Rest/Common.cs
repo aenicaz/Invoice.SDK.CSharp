@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Invoice.SDK.Rest
 {
     public struct ORDER
     {
         public string currency { get; set; }
-        public decimal amount { get; set; }
+        public double amount { get; set; }
         public string description { get; set; }
         public string id { get; set; }
     }
@@ -17,48 +13,40 @@ namespace Invoice.SDK.Rest
     public struct SETTINGS
     {
         public string terminal_id { get; set; }
-        public PAYMENT_METHOD_TYPE payment_method { get; set; }
         public Uri success_url { get; set; }
         public Uri fail_url { get; set; }
+        public string recur_exp { get; set; }
+        public string recur_freq { get; set; }        
     }
 
-    public struct ITEM
+    public struct RECEIPT
     {
         public string name { get; set; }
-        public float quantity { get; set; }
-        public decimal price { get; set; }
-        public decimal resultPrice { get; set; }
+        public double price { get; set; }
         public string discount { get; set; }
+        public double resultPrice { get; set; }
+        public float quantity { get; set; }
     }
-
-    public struct REFUND_INFO
-    {
-        public decimal amount { get; set; }
-        public string currency { get; set; }
-        public string reason { get; set; }
-    }
-
     public struct PAYMENT_METHOD
     {
+        public string account {  get; set; }
+        public string type { get; set; }
         public string terminal_id { get; set; }
-        public PAYMENT_METHOD_TYPE type { get; set; }
-        public string account { get; set; }
-        public double funds { get; set; }
-        public double bonuses { get; set; }
     }
-
+    public struct REFUND
+    {
+        public double amount { get; set; }
+        public string reason { get; set; }
+    }
+    public enum RT_TYPE
+    {
+        payment = 1,
+        paymentWithRecurentRegistration = 4
+    }
     public enum NOTIFICATION_TYPE
     {
         pay,
         check
-    }
-
-    public enum PAYMENT_METHOD_TYPE
-    {
-        card,
-        phone,
-        qiwi,
-        wm
     }
 
     public enum TERMINAL_TYPE
@@ -66,7 +54,18 @@ namespace Invoice.SDK.Rest
         statical,
         dynamical
     }
-
+    public enum STATUS
+    {
+        init,
+        process,
+        successful,
+        error
+    }
+    public enum PAYMENT_POINT_TYPE
+    {
+        offline,
+        online
+    }
     public enum PAYMENT_STATE
     {
         created = 1,
